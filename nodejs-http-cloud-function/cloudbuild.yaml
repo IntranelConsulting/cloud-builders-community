@@ -1,21 +1,37 @@
 substitutions:
-  _NODE_VERSION: 10-jessie-slim
   _CLOUD_SDK_VERSION: 251.0.0
+  _GOLANG_VERSION: 1.11.11
+  _NVM_VERSION: 0.34.0
+  _NODEJS_6_VERSION: 6.16.0
+  _NODEJS_8_VERSION: 8.15.0
+  _NODEJS_10_VERSION: 10.15.3
+  _YARN_VERSION: 1.17.2
+  _PYTHON_3_7_VERSION: 3.7.1
 
 steps:
   - name: gcr.io/cloud-builders/docker
     args:
       - build
       - -t
-      - gcr.io/$PROJECT_ID/nodejs-http-cloud-function:$_NODE_VERSION
-      - --build-arg
-      - NODE_VERSION=$_NODE_VERSION
+      - gcr.io/$PROJECT_ID/cloud-function-builder
       - --build-arg
       - CLOUD_SDK_VERSION=$_CLOUD_SDK_VERSION
+      - --build-arg
+      - GOLANG_VERSION=$_GOLANG_VERSION
+      - --build-arg
+      - NVM_VERSION=$_NVM_VERSION
+      - --build-arg
+      - NODEJS_6_VERSION=$_NODEJS_6_VERSION
+      - --build-arg
+      - NODEJS_8_VERSION=$_NODEJS_8_VERSION
+      - --build-arg
+      - NODEJS_10_VERSION=$_NODEJS_10_VERSION
+      - --build-arg
+      - YARN_VERSION=$_YARN_VERSION
+      - --build-arg
+      - PYTHON_3_7_VERSION=$_PYTHON_3_7_VERSION
       - .
-  - name: gcr.io/$PROJECT_ID/nodejs-http-cloud-function:$_NODE_VERSION
-    args:
-      - --help
+  - name: gcr.io/$PROJECT_ID/cloud-function-builder
 
 images:
-  - gcr.io/$PROJECT_ID/nodejs-http-cloud-function:$_NODE_VERSION
+  - gcr.io/$PROJECT_ID/cloud-function-builder
