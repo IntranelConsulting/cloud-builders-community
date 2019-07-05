@@ -1,1 +1,3 @@
 examples/
+cloud-function-builder/vendor/
+cloud-function-builder/cloud-function-builder
