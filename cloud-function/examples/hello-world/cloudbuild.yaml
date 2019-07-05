@@ -1,6 +1,2 @@
 steps:
-  - id: Build, Test & Deploy
-    name: gcr.io/$PROJECT_ID/cloud-function-builder
-    args:
-      - --entry-point=helloWorld
-      - --deployment-name=$_DEPLOYMENT_NAME
+  - name: gcr.io/$PROJECT_ID/cloud-function-builder:nodejs10
